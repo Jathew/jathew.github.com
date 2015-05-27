@@ -74,6 +74,62 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-Android 异常" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/27/Android 异常/" class="article-date">
+  <time datetime="2015-05-27T04:54:28.678Z" itemprop="datePublished">2015-05-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/27/Android 异常/">Android 异常（不定期更新）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="关键字：JNI_ERROR_(app_bug):_accessed_stale_local_reference、jclass_is_an_invalid_local_reference">关键字：JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</h2><h2 id="log">log</h2><pre><code><span class="keyword">E</span>/art﹕ JNI <span class="keyword">ERROR</span> (<span class="keyword">app</span> bug): accessed stale <span class="keyword">local</span> reference 0x5950001d (index 7 <span class="keyword">in</span> a <span class="keyword">table</span> of size 1)
+<span class="keyword">E</span>/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name="main 
+art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
+<span class="keyword">E</span>/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]
+art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
+</code></pre><h2 id="现象">现象</h2><p>android5.0以上，调用jni相关方法后，程序崩溃</p>
+<h2 id="原因及解决办法">原因及解决办法</h2><p>通过findclass获得的local reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
+<pre><code>jclass myclass；
+jclass temp = <span class="built_ins">env</span>-&gt;findclass(XXXX);
+myclass = (jclass)<span class="built_ins">env</span>-&gt;NewGlobalRef(temp);
+</code></pre><p>记得要调用DeleteGlobalRef</p>
+<p> 另外以下几个链接也可以参考一下<br> <a href="http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html" target="_blank" rel="external">JNI Local Reference Changes in ICS</a><br> <a href="http://blog.k-res.net/archives/1525.html" target="_blank" rel="external">国内的翻译</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://jathew.github.io/2015/05/27/Android 异常/" data-id="cia6a2q7s0004ecpxaigxe19x" class="article-share-link" data-share="baidu">分享到</a>
+      
+
+      
+        <a href="http://jathew.github.io/2015/05/27/Android 异常/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Android Proguard详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/05/16/Android Proguard详解/" class="article-date">
@@ -111,7 +167,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://jathew.github.io/2015/05/16/Android Proguard详解/" data-id="ci9r2cw3d00009opx2k7d1k7n" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://jathew.github.io/2015/05/16/Android Proguard详解/" data-id="cia6a2q4o0000ecpxbl0ds3nt" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -139,7 +195,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -157,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -167,6 +223,10 @@
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/05/27/Android 异常/">Android 异常（不定期更新）</a>
+          </li>
         
           <li>
             <a href="/2015/05/16/Android Proguard详解/">Android Proguard详解</a>
