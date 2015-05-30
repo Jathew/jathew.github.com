@@ -4,19 +4,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Jathew&#39;s blog</title>
+  <title>Archives | Lyu7&#39;s notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="技术、心得、体会">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Jathew's blog">
+<meta property="og:title" content="Lyu7's notes">
 <meta property="og:url" content="http://jathew.github.io/archives/index.html">
-<meta property="og:site_name" content="Jathew's blog">
+<meta property="og:site_name" content="Lyu7's notes">
 <meta property="og:description" content="技术、心得、体会">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jathew's blog">
+<meta name="twitter:title" content="Lyu7's notes">
 <meta name="twitter:description" content="技术、心得、体会">
   
-    <link rel="alternative" href="/atom.xml" title="Jathew&#39;s blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Lyu7&#39;s notes" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +33,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Jathew&#39;s blog</a>
+        <a href="/" id="logo">Lyu7&#39;s notes</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -76,8 +76,8 @@
   
     <article id="post-Android 异常（不定期更新）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/28/Android 异常（不定期更新）/" class="article-date">
-  <time datetime="2015-05-28T08:31:14.169Z" itemprop="datePublished">2015-05-28</time>
+    <a href="/2015/05/30/Android 异常（不定期更新）/" class="article-date">
+  <time datetime="2015-05-30T14:24:00.959Z" itemprop="datePublished">2015-05-30</time>
 </a>
     
   </div>
@@ -88,7 +88,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/28/Android 异常（不定期更新）/">Android异常(不定期更新)</a>
+      <a class="article-title" href="/2015/05/30/Android 异常（不定期更新）/">Android 异常（不定期更新）</a>
     </h1>
   
 
@@ -96,35 +96,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Exception_1">Exception 1</h2><h4 id="关键字：">关键字：</h4><p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
-<h4 id="log">log</h4><pre><code><span class="keyword">E</span>/art﹕ JNI <span class="keyword">ERROR</span> (<span class="keyword">app</span> bug): accessed stale <span class="keyword">local</span> reference 0x5950001d (index 7 <span class="keyword">in</span> a <span class="keyword">table</span> of size 1)
-<span class="keyword">E</span>/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name="main 
-art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
-<span class="keyword">E</span>/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]
-art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
-</code></pre><h4 id="现象">现象</h4><p>android5.0以上，调用jni相关方法后，程序崩溃</p>
-<h4 id="原因及解决办法">原因及解决办法</h4><p>通过findclass获得的local<br>reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
-<pre><code>jclass myclass；
-jclass temp = <span class="built_ins">env</span>-&gt;findclass(XXXX);
-myclass = (jclass)<span class="built_ins">env</span>-&gt;NewGlobalRef(temp);
-</code></pre><p>记得要调用DeleteGlobalRef</p>
-<p>另外以下几个链接也可以参考一下 <a href="http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html" target="_blank" rel="external">JNI Local Reference Changes in<br>ICS</a><br><a href="http://blog.k-res.net/archives/1525.html" target="_blank" rel="external">国内的翻译</a></p>
-<h2 id="Exception_2">Exception 2</h2><h4 id="关键字：-1">关键字：</h4><p>Error type 3， activity class does not exist</p>
-<h4 id="log-1">log</h4><pre><code>Starting: <span class="type">Intent</span> { act=android.<span class="type">intent</span>.<span class="keyword">action</span>.MAIN cat=[android.<span class="type">intent</span>.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash }
-Error <span class="keyword">type</span> <span class="number">3</span>
-Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/com.codealchemist.clashmma.splash} does not <span class="keyword">exist</span>.
-</code></pre><h4 id="现象-1">现象</h4><p>用android studio运行app，如果修改了包名，启动的时候会出现如下错误</p>
-<h4 id="原因及解决办法-1">原因及解决办法</h4><p>在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’</p>
-
+        <h2 id="Exception_3">Exception 3</h2><h4 id="关键字：">关键字：</h4><p>Android studio gradle add tools:replace</p>
+<h4 id="log">log</h4><pre><code><span class="string">Error:</span>(<span class="number">26</span>, <span class="number">9</span>) Attribute application<span class="annotation">@icon</span> value=(<span class="annotation">@drawable</span>/logo) from AndroidManifest.<span class="string">xml:</span><span class="number">26</span>:<span class="number">9</span>
+<span class="string">Error:</span>(<span class="number">28</span>, <span class="number">9</span>) Attribute application<span class="annotation">@theme</span> value=(<span class="annotation">@style</span>/ThemeActionBar) from AndroidManifest.<span class="string">xml:</span><span class="number">28</span>:<span class="number">9</span>
+is also present at XXXX-<span class="string">trunk:</span><span class="string">XXXXLib:</span><span class="string">unspecified:</span><span class="number">15</span>:<span class="number">9</span> value=(<span class="annotation">@style</span>/AppTheme)
+<span class="string">Suggestion:</span> add <span class="string">'tools:replace="android:theme"'</span> to  element at AndroidManifest.<span class="string">xml:</span><span class="number">24</span>:<span class="number">5</span> to override
+<span class="string">Error:</span>Execution failed <span class="keyword">for</span> task <span class="string">':XXXX:processDebugManifest'</span>.
+ Manifest merger failed with multiple errors, see logs
+</code></pre><h4 id="现象">现象</h4><p>用gradle编译工程，出错，无法运行</p>
+<h4 id="原因及解决办法">原因及解决办法</h4><p>原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失<br>败，并报上面的错误</p>
+<p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
+<p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/05/30/Android 异常（不定期更新）/#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://jathew.github.io/2015/05/28/Android 异常（不定期更新）/" data-id="cia7x33nq0004fgpx4uyrsegi" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://jathew.github.io/2015/05/30/Android 异常（不定期更新）/" data-id="ciab257860004f0pxaw93k8pa" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://jathew.github.io/2015/05/28/Android 异常（不定期更新）/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://jathew.github.io/2015/05/30/Android 异常（不定期更新）/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -137,10 +133,10 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
 
 
   
-    <article id="post-Android Proguard详解" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="false-Android Proguard详解" class="article article-type-false" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/16/Android Proguard详解/" class="article-date">
-  <time datetime="2015-05-16T13:27:16.978Z" itemprop="datePublished">2015-05-16</time>
+    <a href="/2015/05/30/Android Proguard详解/" class="article-date">
+  <time datetime="2015-05-30T14:21:17.225Z" itemprop="datePublished">2015-05-30</time>
 </a>
     
   </div>
@@ -151,7 +147,7 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/16/Android Proguard详解/">Android Proguard详解</a>
+      <a class="article-title" href="/2015/05/30/Android Proguard详解/">Android Proguard详解</a>
     </h1>
   
 
@@ -159,26 +155,22 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="简介">简介</h3><p>Java代码是非常容易反编译的。为了很好的保护Java源代码，我们往往会对编译好的class文件进行混淆处理。<br>ProGuard是一个混淆代码的开源项目。它的主要作用就是混淆，当然它还能对字节码进行缩减体积、优化等，但那些对于我们来说都算是次要的功能。官网网址是<br><a href="http://proguard.sourceforge.net/" target="_blank" rel="external">http://proguard.sourceforge.net/</a></p>
-<h3 id="详解">详解</h3><h4 id="1-_原理">1. 原理</h4><p>Java 是一种跨平台的、解释型语言，Java 源代码编译成中间”字节码”存储于 class 文件中。由于跨平台的需要，Java 字节码中包括了很多源代码信息，如变量名、方法名，并且通过这些名称来访问变量和方法，这些符号带有许多语义信息，很容易被反编译成 Java 源代码。为了防止这种现象，我们可以使用 Java 混淆器对 Java 字节码进行混淆。</p>
-<p>混淆就是对发布出去的程序进行重新组织和处理，使得处理后的代码与处理前代码完成相同的功能，而混淆后的代码很难被反编译，即使反编译成功也很难得出程序的真正语义。被混淆过的程序代码，仍然遵照原来的档案格式和指令集，执行结果也与混淆前一样，只是混淆器将代码中的所有变量、函数、类的名称变为简短的英文字母代号，在缺乏相应的函数名和程序注释的况下，即使被反编译，也将难以阅读。同时混淆是不可逆的，在混淆的过程中一些不影响正常运行的信息将永久丢失，这些信息的丢失使程序变得更加难以理解。</p>
-<p>混淆器的作用不仅仅是保护代码，它也有精简编译后程序大小的作用。由于以上介绍的缩短变量和函数名以及丢失部分信息的原因， 编译后 jar 文件体积大约能减少25% ，这对当前费用较贵的无线网络传输是有一定意义的。</p>
-<h4 id="2-语法">2.语法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[java] view plaincopy在CODE上查看代码片派生到我的代码片 </span><br><span class="line">-include &#123;filename&#125;    从给定的文件中读取配置参数   </span><br><span class="line">-basedirectory &#123;directoryname&#125;    指定基础目录为以后相对的档案名称   </span><br><span class="line">-injars &#123;class_path&#125;    指定要处理的应用程序jar,war,ear和目录   </span><br><span class="line">-outjars &#123;class_path&#125;    指定处理完后要输出的jar,war,ear和目录的名称   </span><br><span class="line">-libraryjars &#123;classpath&#125;    指定要处理的应用程序jar,war,ear和目录所需要的程序库文件   </span><br><span class="line">-dontskipnonpubliclibraryclasses    指定不去忽略非公共的库类。   </span><br><span class="line">-dontskipnonpubliclibraryclassmembers    指定不去忽略包可见的库类的成员。  </span><br><span class="line">  </span><br><span class="line">保留选项   </span><br><span class="line">-keep &#123;Modifier&#125; &#123;class_specification&#125;    保护指定的类文件和类的成员   </span><br><span class="line">-keepclassmembers &#123;modifier&#125; &#123;class_specification&#125;    保护指定类的成员，如果此类受到保护他们会保护的更好  </span><br><span class="line">-keepclasseswithmembers &#123;class_specification&#125;    保护指定的类和类的成员，但条件是所有指定的类和类成员是要存在。   </span><br><span class="line">-keepnames &#123;class_specification&#125;    保护指定的类和类的成员的名称（如果他们不会压缩步骤中删除）   </span><br><span class="line">-keepclassmembernames &#123;class_specification&#125;    保护指定的类的成员的名称（如果他们不会压缩步骤中删除）   </span><br><span class="line">-keepclasseswithmembernames &#123;class_specification&#125;    保护指定的类和类的成员的名称，如果所有指定的类成员出席（在压缩步骤之后）   </span><br><span class="line">-printseeds &#123;filename&#125;    列出类和类的成员-keep选项的清单，标准输出到给定的文件   </span><br><span class="line">  </span><br><span class="line">压缩   </span><br><span class="line">-dontshrink    不压缩输入的类文件   </span><br><span class="line">-printusage &#123;filename&#125;   </span><br><span class="line">-whyareyoukeeping &#123;class_specification&#125;       </span><br><span class="line">  </span><br><span class="line">优化   </span><br><span class="line">-dontoptimize    不优化输入的类文件   </span><br><span class="line">-assumenosideeffects &#123;class_specification&#125;    优化时假设指定的方法，没有任何副作用   </span><br><span class="line">-allowaccessmodification    优化时允许访问并修改有修饰符的类和类的成员   </span><br><span class="line">  </span><br><span class="line">混淆   </span><br><span class="line">-dontobfuscate    不混淆输入的类文件   </span><br><span class="line">-printmapping &#123;filename&#125;   </span><br><span class="line">-applymapping &#123;filename&#125;    重用映射增加混淆   </span><br><span class="line">-obfuscationdictionary &#123;filename&#125;    使用给定文件中的关键字作为要混淆方法的名称   </span><br><span class="line">-overloadaggressively    混淆时应用侵入式重载   </span><br><span class="line">-useuniqueclassmembernames    确定统一的混淆类的成员名称来增加混淆   </span><br><span class="line">-flattenpackagehierarchy &#123;package_name&#125;    重新包装所有重命名的包并放在给定的单一包中   </span><br><span class="line">-repackageclass &#123;package_name&#125;    重新包装所有重命名的类文件中放在给定的单一包中   </span><br><span class="line">-dontusemixedcaseclassnames    混淆时不会产生形形色色的类名   </span><br><span class="line">-keepattributes &#123;attribute_name,...&#125;    保护给定的可选属性，例如LineNumberTable, LocalVariableTable, SourceFile, Deprecated, Synthetic, Signature, and   </span><br><span class="line">  </span><br><span class="line">InnerClasses.   </span><br><span class="line">-renamesourcefileattribute &#123;string&#125;    设置源文件中给定的字符串常量</span><br></pre></td></tr></table></figure>
-<h5 id="demo">demo</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">-ignorewarnings                     <span class="comment"># 忽略警告，避免打包时某些警告出现  </span></span><br><span class="line">-optimizationpasses <span class="number">5</span>               <span class="comment"># 指定代码的压缩级别  </span></span><br><span class="line">-dontusemixedcaseclassnames         <span class="comment"># 是否使用大小写混合  </span></span><br><span class="line">-dontskipnonpubliclibraryclasses    <span class="comment"># 是否混淆第三方jar  </span></span><br><span class="line">-dontpreverify                      <span class="comment"># 混淆时是否做预校验  </span></span><br><span class="line">-verbose                            <span class="comment"># 混淆时是否记录日志  </span></span><br><span class="line">-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*        <span class="comment"># 混淆时所采用的算法  </span></span><br><span class="line">  </span><br><span class="line">-libraryjars   libs/treecore.jar  </span><br><span class="line">  </span><br><span class="line">-dontwarn android.support.v4.**     <span class="comment">#缺省proguard 会检查每一个引用是否正确，但是第三方库里面往往有些不会用到的类，没有正确引用。如果不配置的话，系统就会报错。  </span></span><br><span class="line">-dontwarn android.os.**  </span><br><span class="line">-keep class android.support.v4.** &#123; *; &#125;        <span class="comment"># 保持哪些类不被混淆  </span></span><br><span class="line">-keep class com.baidu.** &#123; *; &#125;    </span><br><span class="line">-keep class vi.com.gdi.bgl.android.**&#123;*;&#125;  </span><br><span class="line">-keep class android.os.**&#123;*;&#125;  </span><br><span class="line">  </span><br><span class="line">-keep interface android.support.v4.app.** &#123; *; &#125;    </span><br><span class="line">-keep public class * extends android.support.v4.**    </span><br><span class="line">-keep public class * extends android.app.Fragment  </span><br><span class="line">  </span><br><span class="line">-keep public class * extends android.app.Activity  </span><br><span class="line">-keep public class * extends android.app.Application  </span><br><span class="line">-keep public class * extends android.app.Service  </span><br><span class="line">-keep public class * extends android.content.BroadcastReceiver  </span><br><span class="line">-keep public class * extends android.content.ContentProvider  </span><br><span class="line">-keep public class * extends android.support.v4.widget  </span><br><span class="line">-keep public class * extends com.sqlcrypt.database  </span><br><span class="line">-keep public class * extends com.sqlcrypt.database.sqlite  </span><br><span class="line">-keep public class * extends com.treecore.**  </span><br><span class="line">-keep public class * extends de.greenrobot.dao.**  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">-keepclasseswithmembernames class * &#123;       <span class="comment"># 保持 native 方法不被混淆  </span></span><br><span class="line">    native &lt;methods&gt;;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">-keepclasseswithmembers class * &#123;            <span class="comment"># 保持自定义控件类不被混淆  </span></span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">-keepclasseswithmembers class * &#123;            <span class="comment"># 保持自定义控件类不被混淆  </span></span><br><span class="line">    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">-keepclassmembers class * extends android.app.Activity &#123; //保持类成员  </span><br><span class="line">   public void *(android.view.View);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">-keepclassmembers enum * &#123;                  <span class="comment"># 保持枚举 enum 类不被混淆  </span></span><br><span class="line">    public static **[] values();  </span><br><span class="line">    public static ** valueOf(java.lang.String);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">-keep class * implements android.os.Parcelable &#123;    <span class="comment"># 保持 Parcelable 不被混淆  </span></span><br><span class="line">  public static final android.os.Parcelable<span class="variable">$Creator</span> *;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">-keep class MyClass;                              <span class="comment"># 保持自己定义的类不被混淆</span></span><br></pre></td></tr></table></figure>
-<h4 id="文件">文件</h4><p>mapping.txt<br>表示混淆前后代码的对照表，这个文件非常重要。如果你的代码混淆后会产生bug的话，log提示中是混淆后的代码，希望定位到源代码的话就可以根据mapping.txt反推。<br>每次发布都要保留它方便该版本出现问题时调出日志进行排查，它可以根据版本号或是发布时间命名来保存或是放进代码版本控制中。</p>
-<p>dump.txt<br>描述apk内所有class文件的内部结构。</p>
-<p>seeds.txt<br>列出了没有被混淆的类和成员。</p>
-<p>usage.txt<br>列出了源代码中被删除在apk中不存在的代码。</p>
-
+        <h3 id="简介">简介</h3><p>Java代码是非常容易反编译的。为了很好的保护Java源代码，我们往往会对编译好的class文件进行混淆处理。<br>ProGuard是一个混淆代码的开源项目。它的主要作用就是混淆，当然它还能对字节码进行缩减体积、优化等，但那些对于我们来说都算是次要的功能。官网网址是<br><a href="http://proguard.sourceforge.net/">http://proguard.sourceforge.net/</a></p>
+<h3 id="详解">详解</h3><h4 id="1-_原理">1. 原理</h4><p>Java 是一种跨平台的、解释型语言，Java 源代码编译成中间”字节码”存储于 class 文件中。由于跨平台的需要，Java 字节码中包括了很多源代码信息，如变量名、方法名，并且通过这些名称来访问变量和方法，这些符号带有许多语义信息，很容易被反编译成 Java 源代码。为了防止这种现象，我们可以使用 Java 混淆器对 Java 字节码进行混淆。<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/05/30/Android Proguard详解/#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://jathew.github.io/2015/05/16/Android Proguard详解/" data-id="cia7x33l80000fgpxmalc4yk3" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://jathew.github.io/2015/05/30/Android Proguard详解/" data-id="ciab2575r0000f0px8pm4sszv" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://jathew.github.io/2015/05/16/Android Proguard详解/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://jathew.github.io/2015/05/30/Android Proguard详解/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -232,11 +224,11 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
       <ul>
         
           <li>
-            <a href="/2015/05/28/Android 异常（不定期更新）/">Android异常(不定期更新)</a>
+            <a href="/2015/05/30/Android 异常（不定期更新）/">Android 异常（不定期更新）</a>
           </li>
         
           <li>
-            <a href="/2015/05/16/Android Proguard详解/">Android Proguard详解</a>
+            <a href="/2015/05/30/Android Proguard详解/">Android Proguard详解</a>
           </li>
         
       </ul>
@@ -266,7 +258,7 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Jathew<br>
+      &copy; 2015 Lyu7<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
       .
       Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
@@ -326,6 +318,44 @@ var duoshuoQuery = {short_name:"jathew"};
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
   <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 <script src="/js/script.js" type="text/javascript"></script>

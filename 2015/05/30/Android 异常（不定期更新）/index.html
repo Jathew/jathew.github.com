@@ -4,22 +4,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android异常(不定期更新) | Jathew&#39;s blog</title>
+  <title>Android 异常（不定期更新） | Lyu7&#39;s notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Exception 1关键字：JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference
-logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of">
+  <meta name="description" content="Exception 3关键字：Android studio gradle add tools:replace
+logError:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
+Error:(28, 9) Attribute application@theme value=">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android异常(不定期更新)">
-<meta property="og:url" content="http://jathew.github.io/2015/05/28/Android 异常（不定期更新）/index.html">
-<meta property="og:site_name" content="Jathew's blog">
-<meta property="og:description" content="Exception 1关键字：JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference
-logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of">
+<meta property="og:title" content="Android 异常（不定期更新）">
+<meta property="og:url" content="http://jathew.github.io/2015/05/30/Android 异常（不定期更新）/index.html">
+<meta property="og:site_name" content="Lyu7's notes">
+<meta property="og:description" content="Exception 3关键字：Android studio gradle add tools:replace
+logError:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
+Error:(28, 9) Attribute application@theme value=">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android异常(不定期更新)">
-<meta name="twitter:description" content="Exception 1关键字：JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference
-logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of">
+<meta name="twitter:title" content="Android 异常（不定期更新）">
+<meta name="twitter:description" content="Exception 3关键字：Android studio gradle add tools:replace
+logError:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
+Error:(28, 9) Attribute application@theme value=">
   
-    <link rel="alternative" href="/atom.xml" title="Jathew&#39;s blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Lyu7&#39;s notes" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -36,7 +39,7 @@ logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (inde
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Jathew&#39;s blog</a>
+        <a href="/" id="logo">Lyu7&#39;s notes</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -77,8 +80,8 @@ logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (inde
     <div class="outer">
       <section id="main"><article id="post-Android 异常（不定期更新）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/05/28/Android 异常（不定期更新）/" class="article-date">
-  <time datetime="2015-05-28T08:31:14.169Z" itemprop="datePublished">2015-05-28</time>
+    <a href="/2015/05/30/Android 异常（不定期更新）/" class="article-date">
+  <time datetime="2015-05-30T14:24:00.959Z" itemprop="datePublished">2015-05-30</time>
 </a>
     
   </div>
@@ -89,7 +92,7 @@ logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (inde
         
   
     <h1 class="article-title" itemprop="name">
-      Android异常(不定期更新)
+      Android 异常（不定期更新）
     </h1>
   
 
@@ -97,35 +100,47 @@ logE/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (inde
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Exception_1">Exception 1</h2><h4 id="关键字：">关键字：</h4><p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
-<h4 id="log">log</h4><pre><code><span class="keyword">E</span>/art﹕ JNI <span class="keyword">ERROR</span> (<span class="keyword">app</span> bug): accessed stale <span class="keyword">local</span> reference 0x5950001d (index 7 <span class="keyword">in</span> a <span class="keyword">table</span> of size 1)
-<span class="keyword">E</span>/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name="main 
-art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
-<span class="keyword">E</span>/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]
-art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
-</code></pre><h4 id="现象">现象</h4><p>android5.0以上，调用jni相关方法后，程序崩溃</p>
-<h4 id="原因及解决办法">原因及解决办法</h4><p>通过findclass获得的local<br>reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
-<pre><code>jclass myclass；
-jclass temp = <span class="built_ins">env</span>-&gt;findclass(XXXX);
-myclass = (jclass)<span class="built_ins">env</span>-&gt;NewGlobalRef(temp);
-</code></pre><p>记得要调用DeleteGlobalRef</p>
-<p>另外以下几个链接也可以参考一下 <a href="http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html" target="_blank" rel="external">JNI Local Reference Changes in<br>ICS</a><br><a href="http://blog.k-res.net/archives/1525.html" target="_blank" rel="external">国内的翻译</a></p>
+        <h2 id="Exception_3">Exception 3</h2><h4 id="关键字：">关键字：</h4><p>Android studio gradle add tools:replace</p>
+<h4 id="log">log</h4><pre><code><span class="string">Error:</span>(<span class="number">26</span>, <span class="number">9</span>) Attribute application<span class="annotation">@icon</span> value=(<span class="annotation">@drawable</span>/logo) from AndroidManifest.<span class="string">xml:</span><span class="number">26</span>:<span class="number">9</span>
+<span class="string">Error:</span>(<span class="number">28</span>, <span class="number">9</span>) Attribute application<span class="annotation">@theme</span> value=(<span class="annotation">@style</span>/ThemeActionBar) from AndroidManifest.<span class="string">xml:</span><span class="number">28</span>:<span class="number">9</span>
+is also present at XXXX-<span class="string">trunk:</span><span class="string">XXXXLib:</span><span class="string">unspecified:</span><span class="number">15</span>:<span class="number">9</span> value=(<span class="annotation">@style</span>/AppTheme)
+<span class="string">Suggestion:</span> add <span class="string">'tools:replace="android:theme"'</span> to  element at AndroidManifest.<span class="string">xml:</span><span class="number">24</span>:<span class="number">5</span> to override
+<span class="string">Error:</span>Execution failed <span class="keyword">for</span> task <span class="string">':XXXX:processDebugManifest'</span>.
+ Manifest merger failed with multiple errors, see logs
+</code></pre><h4 id="现象">现象</h4><p>用gradle编译工程，出错，无法运行</p>
+<h4 id="原因及解决办法">原因及解决办法</h4><p>原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失<br>败，并报上面的错误</p>
+<p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）" target="_blank" rel="external">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
+<p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
+<a id="more"></a>
 <h2 id="Exception_2">Exception 2</h2><h4 id="关键字：-1">关键字：</h4><p>Error type 3， activity class does not exist</p>
 <h4 id="log-1">log</h4><pre><code>Starting: <span class="type">Intent</span> { act=android.<span class="type">intent</span>.<span class="keyword">action</span>.MAIN cat=[android.<span class="type">intent</span>.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash }
 Error <span class="keyword">type</span> <span class="number">3</span>
 Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/com.codealchemist.clashmma.splash} does not <span class="keyword">exist</span>.
 </code></pre><h4 id="现象-1">现象</h4><p>用android studio运行app，如果修改了包名，启动的时候会出现如下错误</p>
 <h4 id="原因及解决办法-1">原因及解决办法</h4><p>在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’</p>
+<h2 id="Exception_1">Exception 1</h2><h4 id="关键字：-2">关键字：</h4><p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
+<h4 id="log-2">log</h4><pre><code><span class="keyword">E</span>/art﹕ JNI <span class="keyword">ERROR</span> (<span class="keyword">app</span> bug): accessed stale <span class="keyword">local</span> reference 0x5950001d (index 7 <span class="keyword">in</span> a <span class="keyword">table</span> of size 1)
+<span class="keyword">E</span>/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name="main 
+art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
+<span class="keyword">E</span>/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]
+art/runtime/check_jni.<span class="keyword">cc</span>:65] JNI DETECTED <span class="keyword">ERROR</span> <span class="keyword">IN</span> APPLICATION: jclass is <span class="keyword">an</span> invalid <span class="keyword">local</span> reference: 0x5950001d (0xdead4321)
+</code></pre><h4 id="现象-2">现象</h4><p>android5.0以上，调用jni相关方法后，程序崩溃</p>
+<h4 id="原因及解决办法-2">原因及解决办法</h4><p>通过findclass获得的local<br>reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
+<pre><code>jclass myclass；
+jclass temp = <span class="built_ins">env</span>-&gt;findclass(XXXX);
+myclass = (jclass)<span class="built_ins">env</span>-&gt;NewGlobalRef(temp);
+</code></pre><p>记得要调用DeleteGlobalRef</p>
+<p>另外以下几个链接也可以参考一下 <a href="http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html" target="_blank" rel="external">JNI Local Reference Changes in<br>ICS</a><br><a href="http://blog.k-res.net/archives/1525.html" target="_blank" rel="external">国内的翻译</a></p>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://jathew.github.io/2015/05/28/Android 异常（不定期更新）/" data-id="cia7x33nq0004fgpx4uyrsegi" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://jathew.github.io/2015/05/30/Android 异常（不定期更新）/" data-id="ciab257860004f0pxaw93k8pa" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
-        <a href="http://jathew.github.io/2015/05/28/Android 异常（不定期更新）/#ds-thread" class="article-comment-link">评论</a>
+        <a href="http://jathew.github.io/2015/05/30/Android 异常（不定期更新）/#ds-thread" class="article-comment-link">评论</a>
       
 
       
@@ -138,7 +153,7 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
 <nav id="article-nav">
   
   
-    <a href="/2015/05/16/Android Proguard详解/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/05/30/Android Proguard详解/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">Android Proguard详解</div>
     </a>
@@ -150,7 +165,7 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
 
 
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2015/05/28/Android 异常（不定期更新）/" data-title="Android异常(不定期更新)" data-url="http://jathew.github.io/2015/05/28/Android 异常（不定期更新）/"></div>
+    <div id="ds-thread" class="ds-thread" data-thread-key="2015/05/30/Android 异常（不定期更新）/" data-title="Android 异常（不定期更新）" data-url="http://jathew.github.io/2015/05/30/Android 异常（不定期更新）/"></div>
   </section>
 </section>
       
@@ -192,11 +207,11 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
       <ul>
         
           <li>
-            <a href="/2015/05/28/Android 异常（不定期更新）/">Android异常(不定期更新)</a>
+            <a href="/2015/05/30/Android 异常（不定期更新）/">Android 异常（不定期更新）</a>
           </li>
         
           <li>
-            <a href="/2015/05/16/Android Proguard详解/">Android Proguard详解</a>
+            <a href="/2015/05/30/Android Proguard详解/">Android Proguard详解</a>
           </li>
         
       </ul>
@@ -226,7 +241,7 @@ Error: Activity <span class="keyword">class</span> {com.codealchemist.clashmma/c
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Jathew<br>
+      &copy; 2015 Lyu7<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
       .
       Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
@@ -286,6 +301,44 @@ var duoshuoQuery = {short_name:"jathew"};
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
   <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 <script src="/js/script.js" type="text/javascript"></script>
