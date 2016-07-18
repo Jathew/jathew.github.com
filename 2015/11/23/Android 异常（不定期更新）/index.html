@@ -61,8 +61,7 @@
     </header>
     <div class="entry">
       
-        <p>##Exception 3</p>
-<h4 id="关键字："><a href="#关键字：" class="headerlink" title="关键字："></a>关键字：</h4><p>Android studio gradle add tools:replace</p>
+        <h1 id="Exception-3"><a href="#Exception-3" class="headerlink" title="Exception 3"></a>Exception 3</h1><h2 id="关键字："><a href="#关键字：" class="headerlink" title="关键字："></a>关键字：</h2><p>Android studio gradle add tools:replace</p>
 <h4 id="log"><a href="#log" class="headerlink" title="log"></a>log</h4><pre><code>Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
 Error:(28, 9) Attribute application@theme value=(@style/ThemeActionBar) from AndroidManifest.xml:28:9
 is also present at XXXX-trunk:XXXXLib:unspecified:15:9 value=(@style/AppTheme)
@@ -74,15 +73,13 @@ Error:Execution failed for task &apos;:XXXX:processDebugManifest&apos;.
 <p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）" target="_blank" rel="external">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
 <p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
 <a id="more"></a>
-<p>##Exception 2</p>
-<h4 id="关键字：-1"><a href="#关键字：-1" class="headerlink" title="关键字："></a>关键字：</h4><p>Error type 3， activity class does not exist</p>
+<h1 id="Exception-2"><a href="#Exception-2" class="headerlink" title="Exception 2"></a>Exception 2</h1><h2 id="关键字：-1"><a href="#关键字：-1" class="headerlink" title="关键字："></a>关键字：</h2><p>Error type 3， activity class does not exist</p>
 <h4 id="log-1"><a href="#log-1" class="headerlink" title="log"></a>log</h4><pre><code>Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash }
 Error type 3
 Error: Activity class {com.codealchemist.clashmma/com.codealchemist.clashmma.splash} does not exist.
 </code></pre><h4 id="现象-1"><a href="#现象-1" class="headerlink" title="现象"></a>现象</h4><p>用android studio运行app，如果修改了包名，启动的时候会出现如下错误</p>
 <h4 id="原因及解决办法-1"><a href="#原因及解决办法-1" class="headerlink" title="原因及解决办法"></a>原因及解决办法</h4><p>在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’</p>
-<p>##Exception 1</p>
-<h4 id="关键字：-2"><a href="#关键字：-2" class="headerlink" title="关键字："></a>关键字：</h4><p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
+<h1 id="Exception-1"><a href="#Exception-1" class="headerlink" title="Exception 1"></a>Exception 1</h1><h2 id="关键字：-2"><a href="#关键字：-2" class="headerlink" title="关键字："></a>关键字：</h2><p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
 <h4 id="log-2"><a href="#log-2" class="headerlink" title="log"></a>log</h4><pre><code>E/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of size 1)
 E/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name=&quot;main 
 art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)

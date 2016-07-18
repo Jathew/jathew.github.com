@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jathew.github.io/"/>
-  <updated>2015-11-23T10:14:02.000Z</updated>
+  <updated>2016-07-18T11:56:23.000Z</updated>
   <id>http://jathew.github.io/</id>
   
   <author>
@@ -20,10 +20,9 @@
     <link href="http://jathew.github.io/2015/11/23/Android%20%E5%BC%82%E5%B8%B8%EF%BC%88%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
     <id>http://jathew.github.io/2015/11/23/Android 异常（不定期更新）/</id>
     <published>2015-11-23T10:14:02.000Z</published>
-    <updated>2015-11-23T10:14:02.000Z</updated>
+    <updated>2016-07-18T11:56:23.000Z</updated>
     
-    <content type="html">&lt;p&gt;##Exception 3&lt;/p&gt;
-&lt;h4 id=&quot;关键字：&quot;&gt;&lt;a href=&quot;#关键字：&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h4&gt;&lt;p&gt;Android studio gradle add tools:replace&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;Exception-3&quot;&gt;&lt;a href=&quot;#Exception-3&quot; class=&quot;headerlink&quot; title=&quot;Exception 3&quot;&gt;&lt;/a&gt;Exception 3&lt;/h1&gt;&lt;h2 id=&quot;关键字：&quot;&gt;&lt;a href=&quot;#关键字：&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h2&gt;&lt;p&gt;Android studio gradle add tools:replace&lt;/p&gt;
 &lt;h4 id=&quot;log&quot;&gt;&lt;a href=&quot;#log&quot; class=&quot;headerlink&quot; title=&quot;log&quot;&gt;&lt;/a&gt;log&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
 Error:(28, 9) Attribute application@theme value=(@style/ThemeActionBar) from AndroidManifest.xml:28:9
 is also present at XXXX-trunk:XXXXLib:unspecified:15:9 value=(@style/AppTheme)
@@ -35,15 +34,13 @@ Error:Execution failed for task &amp;apos;:XXXX:processDebugManifest&amp;apos;.
 &lt;p&gt;解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”&lt;a href=&quot;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;##Exception 2&lt;/p&gt;
-&lt;h4 id=&quot;关键字：-1&quot;&gt;&lt;a href=&quot;#关键字：-1&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h4&gt;&lt;p&gt;Error type 3， activity class does not exist&lt;/p&gt;
+&lt;h1 id=&quot;Exception-2&quot;&gt;&lt;a href=&quot;#Exception-2&quot; class=&quot;headerlink&quot; title=&quot;Exception 2&quot;&gt;&lt;/a&gt;Exception 2&lt;/h1&gt;&lt;h2 id=&quot;关键字：-1&quot;&gt;&lt;a href=&quot;#关键字：-1&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h2&gt;&lt;p&gt;Error type 3， activity class does not exist&lt;/p&gt;
 &lt;h4 id=&quot;log-1&quot;&gt;&lt;a href=&quot;#log-1&quot; class=&quot;headerlink&quot; title=&quot;log&quot;&gt;&lt;/a&gt;log&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash }
 Error type 3
 Error: Activity class {com.codealchemist.clashmma/com.codealchemist.clashmma.splash} does not exist.
 &lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;现象-1&quot;&gt;&lt;a href=&quot;#现象-1&quot; class=&quot;headerlink&quot; title=&quot;现象&quot;&gt;&lt;/a&gt;现象&lt;/h4&gt;&lt;p&gt;用android studio运行app，如果修改了包名，启动的时候会出现如下错误&lt;/p&gt;
 &lt;h4 id=&quot;原因及解决办法-1&quot;&gt;&lt;a href=&quot;#原因及解决办法-1&quot; class=&quot;headerlink&quot; title=&quot;原因及解决办法&quot;&gt;&lt;/a&gt;原因及解决办法&lt;/h4&gt;&lt;p&gt;在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’&lt;/p&gt;
-&lt;p&gt;##Exception 1&lt;/p&gt;
-&lt;h4 id=&quot;关键字：-2&quot;&gt;&lt;a href=&quot;#关键字：-2&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h4&gt;&lt;p&gt;JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference&lt;/p&gt;
+&lt;h1 id=&quot;Exception-1&quot;&gt;&lt;a href=&quot;#Exception-1&quot; class=&quot;headerlink&quot; title=&quot;Exception 1&quot;&gt;&lt;/a&gt;Exception 1&lt;/h1&gt;&lt;h2 id=&quot;关键字：-2&quot;&gt;&lt;a href=&quot;#关键字：-2&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h2&gt;&lt;p&gt;JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference&lt;/p&gt;
 &lt;h4 id=&quot;log-2&quot;&gt;&lt;a href=&quot;#log-2&quot; class=&quot;headerlink&quot; title=&quot;log&quot;&gt;&lt;/a&gt;log&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;E/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of size 1)
 E/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name=&amp;quot;main 
 art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)
@@ -60,8 +57,7 @@ myclass = (jclass)env-&amp;gt;NewGlobalRef(temp);
     
     <summary type="html">
     
-      &lt;p&gt;##Exception 3&lt;/p&gt;
-&lt;h4 id=&quot;关键字：&quot;&gt;&lt;a href=&quot;#关键字：&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h4&gt;&lt;p&gt;Android studio gradle add tools:replace&lt;/p&gt;
+      &lt;h1 id=&quot;Exception-3&quot;&gt;&lt;a href=&quot;#Exception-3&quot; class=&quot;headerlink&quot; title=&quot;Exception 3&quot;&gt;&lt;/a&gt;Exception 3&lt;/h1&gt;&lt;h2 id=&quot;关键字：&quot;&gt;&lt;a href=&quot;#关键字：&quot; class=&quot;headerlink&quot; title=&quot;关键字：&quot;&gt;&lt;/a&gt;关键字：&lt;/h2&gt;&lt;p&gt;Android studio gradle add tools:replace&lt;/p&gt;
 &lt;h4 id=&quot;log&quot;&gt;&lt;a href=&quot;#log&quot; class=&quot;headerlink&quot; title=&quot;log&quot;&gt;&lt;/a&gt;log&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
 Error:(28, 9) Attribute application@theme value=(@style/ThemeActionBar) from AndroidManifest.xml:28:9
 is also present at XXXX-trunk:XXXXLib:unspecified:15:9 value=(@style/AppTheme)
