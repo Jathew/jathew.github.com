@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Lyu7&#39;s notes</title>
+  <meta name="author" content="Lyu7">
+  
+  <meta name="description" content="技术、心得、体会">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Lyu7&#39;s notes"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Lyu7&#39;s notes" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Lyu7&#39;s notes</a></h1>
+  <h2><a href="/">其疾如风，其徐如林，侵掠如火，不动如山。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-11-23T10:14:02.000Z"><a href="/2015/11/23/Android 异常（不定期更新）/">2015-11-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/11/23/Android 异常（不定期更新）/">Android 异常（不定期更新）</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>##Exception 3</p>
+<h4 id="关键字："><a href="#关键字：" class="headerlink" title="关键字："></a>关键字：</h4><p>Android studio gradle add tools:replace</p>
+<h4 id="log"><a href="#log" class="headerlink" title="log"></a>log</h4><pre><code>Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
+Error:(28, 9) Attribute application@theme value=(@style/ThemeActionBar) from AndroidManifest.xml:28:9
+is also present at XXXX-trunk:XXXXLib:unspecified:15:9 value=(@style/AppTheme)
+Suggestion: add &apos;tools:replace=&quot;android:theme&quot;&apos; to  element at AndroidManifest.xml:24:5 to override
+Error:Execution failed for task &apos;:XXXX:processDebugManifest&apos;.
+ Manifest merger failed with multiple errors, see logs
+</code></pre><h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p>用gradle编译工程，出错，无法运行</p>
+<h4 id="原因及解决办法"><a href="#原因及解决办法" class="headerlink" title="原因及解决办法"></a>原因及解决办法</h4><p>原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失<br>败，并报上面的错误</p>
+<p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
+<p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/11/23/Android 异常（不定期更新）/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jathew.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Lyu7
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

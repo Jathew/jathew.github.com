@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 异常（不定期更新） | Lyu7&#39;s notes</title>
+  <meta name="author" content="Lyu7">
+  
+  <meta name="description" content="技术、心得、体会">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Android 异常（不定期更新）"/>
+  <meta property="og:site_name" content="Lyu7&#39;s notes"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Lyu7&#39;s notes" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Lyu7&#39;s notes</a></h1>
+  <h2><a href="/">其疾如风，其徐如林，侵掠如火，不动如山。</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-11-23T10:14:02.000Z"><a href="/2015/11/23/Android 异常（不定期更新）/">2015-11-23</a></time>
+      
+      
+  
+    <h1 class="title">Android 异常（不定期更新）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>##Exception 3</p>
+<h4 id="关键字："><a href="#关键字：" class="headerlink" title="关键字："></a>关键字：</h4><p>Android studio gradle add tools:replace</p>
+<h4 id="log"><a href="#log" class="headerlink" title="log"></a>log</h4><pre><code>Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:9
+Error:(28, 9) Attribute application@theme value=(@style/ThemeActionBar) from AndroidManifest.xml:28:9
+is also present at XXXX-trunk:XXXXLib:unspecified:15:9 value=(@style/AppTheme)
+Suggestion: add &apos;tools:replace=&quot;android:theme&quot;&apos; to  element at AndroidManifest.xml:24:5 to override
+Error:Execution failed for task &apos;:XXXX:processDebugManifest&apos;.
+ Manifest merger failed with multiple errors, see logs
+</code></pre><h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p>用gradle编译工程，出错，无法运行</p>
+<h4 id="原因及解决办法"><a href="#原因及解决办法" class="headerlink" title="原因及解决办法"></a>原因及解决办法</h4><p>原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失<br>败，并报上面的错误</p>
+<p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）" target="_blank" rel="external">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
+<p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
+<a id="more"></a>
+<p>##Exception 2</p>
+<h4 id="关键字：-1"><a href="#关键字：-1" class="headerlink" title="关键字："></a>关键字：</h4><p>Error type 3， activity class does not exist</p>
+<h4 id="log-1"><a href="#log-1" class="headerlink" title="log"></a>log</h4><pre><code>Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash }
+Error type 3
+Error: Activity class {com.codealchemist.clashmma/com.codealchemist.clashmma.splash} does not exist.
+</code></pre><h4 id="现象-1"><a href="#现象-1" class="headerlink" title="现象"></a>现象</h4><p>用android studio运行app，如果修改了包名，启动的时候会出现如下错误</p>
+<h4 id="原因及解决办法-1"><a href="#原因及解决办法-1" class="headerlink" title="原因及解决办法"></a>原因及解决办法</h4><p>在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’</p>
+<p>##Exception 1</p>
+<h4 id="关键字：-2"><a href="#关键字：-2" class="headerlink" title="关键字："></a>关键字：</h4><p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
+<h4 id="log-2"><a href="#log-2" class="headerlink" title="log"></a>log</h4><pre><code>E/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of size 1)
+E/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name=&quot;main 
+art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)
+E/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]
+art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)
+</code></pre><h4 id="现象-2"><a href="#现象-2" class="headerlink" title="现象"></a>现象</h4><p>android5.0以上，调用jni相关方法后，程序崩溃</p>
+<h4 id="原因及解决办法-2"><a href="#原因及解决办法-2" class="headerlink" title="原因及解决办法"></a>原因及解决办法</h4><p>通过findclass获得的local<br>reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
+<pre><code>jclass myclass；
+jclass temp = env-&gt;findclass(XXXX);
+myclass = (jclass)env-&gt;NewGlobalRef(temp);
+</code></pre><p>记得要调用DeleteGlobalRef</p>
+<p>另外以下几个链接也可以参考一下 <a href="http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html" target="_blank" rel="external">JNI Local Reference Changes in<br>ICS</a><br><a href="http://blog.k-res.net/archives/1525.html" target="_blank" rel="external">国内的翻译</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/android/">android</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://jathew.github.io/2015/11/23/Android 异常（不定期更新）/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jathew.github.io">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/android/">android</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 Lyu7
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
