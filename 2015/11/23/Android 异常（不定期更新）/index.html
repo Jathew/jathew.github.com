@@ -106,7 +106,7 @@ Android studio gradle add tools:replace
 log
 
 Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidManifest.xml:26:912345Error:(28, 9) Attribute application@th">
-<meta property="og:updated_time" content="2016-07-20T02:39:47.000Z">
+<meta property="og:updated_time" content="2016-07-24T09:30:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 异常（不定期更新）">
 <meta name="twitter:description" content="Exception 3
@@ -329,45 +329,40 @@ Error:(26, 9) Attribute application@icon value=(@drawable/logo) from AndroidMani
 </li>
 <li><p>原因及解决办法<br>原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失<br>败，并报上面的错误</p>
 </li>
+<li><p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）" target="_blank" rel="external">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
+</li>
+<li><p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
+</li>
 </ul>
-<p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）" target="_blank" rel="external">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
-<p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
 <a id="more"></a>
 <h1 id="Exception-2"><a href="#Exception-2" class="headerlink" title="Exception 2"></a>Exception 2</h1><ul>
-<li>关键字：</li>
+<li>关键字：<br>Error type 3， activity class does not exist</li>
 </ul>
-<p>Error type 3， activity class does not exist</p>
 <ul>
 <li>log</li>
 </ul>
 <figure class="highlight java"><figcaption><span>Starting: Intent &#123; act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash &#125;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Error type <span class="number">3</span></div><div class="line">Error: Activity <span class="class"><span class="keyword">class</span> </span>&#123;com.codealchemist.clashmma/com.codealchemist.clashmma.splash&#125; does not exist</div></pre></td></tr></table></figure>
 <ul>
-<li>现象</li>
-</ul>
-<p>用android studio运行app，如果修改了包名，启动的时候会出现如下错误</p>
-<ul>
-<li>原因及解决办法<br>在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’</li>
+<li><p>现象<br>用android studio运行app，如果修改了包名，启动的时候会出现如下错误</p>
+</li>
+<li><p>原因及解决办法<br>在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’</p>
+</li>
 </ul>
 <h1 id="Exception-1"><a href="#Exception-1" class="headerlink" title="Exception 1"></a>Exception 1</h1><ul>
-<li>关键字：</li>
+<li>关键字：<br>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</li>
 </ul>
-<p>JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference</p>
 <ul>
 <li>log</li>
 </ul>
 <figure class="highlight"><figcaption><span>E/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of size 1)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">E/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name="main </div><div class="line">art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)</div><div class="line">E/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]</div><div class="line">art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)</div></pre></td></tr></table></figure>
 <ul>
-<li>现象</li>
+<li><p>现象<br>android5.0以上，调用jni相关方法后，程序崩溃</p>
+</li>
+<li><p>原因及解决办法<br>通过findclass获得的local<br>reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
+<p>  jclass myclass；<br>  jclass temp = env-&gt;findclass(XXXX);<br>  myclass = (jclass)env-&gt;NewGlobalRef(temp);</p>
+</li>
 </ul>
-<p>android5.0以上，调用jni相关方法后，程序崩溃</p>
-<ul>
-<li>原因及解决办法</li>
-</ul>
-<p>通过findclass获得的local<br>reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下</p>
-<pre><code>jclass myclass；
-jclass temp = env-&gt;findclass(XXXX);
-myclass = (jclass)env-&gt;NewGlobalRef(temp);
-</code></pre><p>记得要调用DeleteGlobalRef</p>
+<p>记得要调用DeleteGlobalRef</p>
 <p>另外以下几个链接也可以参考一下 <a href="http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html" target="_blank" rel="external">JNI Local Reference Changes in<br>ICS</a><br><a href="http://blog.k-res.net/archives/1525.html" target="_blank" rel="external">国内的翻译</a></p>
 
       

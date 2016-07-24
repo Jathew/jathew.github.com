@@ -313,9 +313,11 @@
 </li>
 <li><p>原因及解决办法<br>原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失<br>败，并报上面的错误</p>
 </li>
+<li><p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
+</li>
+<li><p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
+</li>
 </ul>
-<p>解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;，否则会找不到namespace哦）">http://schemas.android.com/tools&quot;，否则会找不到namespace哦）</a></p>
-<p>解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/11/23/Android 异常（不定期更新）/#more" rel="contents">
               阅读全文 &raquo;

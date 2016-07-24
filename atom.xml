@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jathew.github.io/"/>
-  <updated>2016-07-20T02:39:47.000Z</updated>
+  <updated>2016-07-24T09:30:29.000Z</updated>
   <id>http://jathew.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jathew.github.io/2015/11/23/Android%20%E5%BC%82%E5%B8%B8%EF%BC%88%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
     <id>http://jathew.github.io/2015/11/23/Android 异常（不定期更新）/</id>
     <published>2015-11-23T10:14:02.000Z</published>
-    <updated>2016-07-20T02:39:47.000Z</updated>
+    <updated>2016-07-24T09:30:29.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Exception-3&quot;&gt;&lt;a href=&quot;#Exception-3&quot; class=&quot;headerlink&quot; title=&quot;Exception 3&quot;&gt;&lt;/a&gt;Exception 3&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;关键字：&lt;/li&gt;
@@ -35,45 +35,40 @@
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;原因及解决办法&lt;br&gt;原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失&lt;br&gt;败，并报上面的错误&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”&lt;a href=&quot;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”&lt;a href=&quot;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;Exception-2&quot;&gt;&lt;a href=&quot;#Exception-2&quot; class=&quot;headerlink&quot; title=&quot;Exception 2&quot;&gt;&lt;/a&gt;Exception 2&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;关键字：&lt;/li&gt;
+&lt;li&gt;关键字：&lt;br&gt;Error type 3， activity class does not exist&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Error type 3， activity class does not exist&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;log&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;figcaption&gt;&lt;span&gt;Starting: Intent &amp;#123; act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.codealchemist.clashmma/.splash &amp;#125;&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Error type &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Error: Activity &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;/span&gt;&amp;#123;com.codealchemist.clashmma/com.codealchemist.clashmma.splash&amp;#125; does not exist&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
-&lt;li&gt;现象&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;用android studio运行app，如果修改了包名，启动的时候会出现如下错误&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;原因及解决办法&lt;br&gt;在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;现象&lt;br&gt;用android studio运行app，如果修改了包名，启动的时候会出现如下错误&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;原因及解决办法&lt;br&gt;在build.gradle中把 apply plugin: ‘android’ 改为 apply plugin: ‘com.android.application’&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;Exception-1&quot;&gt;&lt;a href=&quot;#Exception-1&quot; class=&quot;headerlink&quot; title=&quot;Exception 1&quot;&gt;&lt;/a&gt;Exception 1&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;关键字：&lt;/li&gt;
+&lt;li&gt;关键字：&lt;br&gt;JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;JNI ERROR (app bug): accessed stale local reference、jclass is an invalid local reference&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;log&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;&lt;span&gt;E/art﹕ JNI ERROR (app bug): accessed stale local reference 0x5950001d (index 7 in a table of size 1)&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;E/art﹕ 0xa96b4c00 SpaceTypeMallocSpace begin=0x12c00000,end=0x13001000,limit=0x32c00000,size=4MB,capacity=512MB,non_growth_limit_capacity=512MB,name=&quot;main &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;E/art﹕ [ 05-26 16:03:20.096 26663:26768 F/art      ]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;art/runtime/check_jni.cc:65] JNI DETECTED ERROR IN APPLICATION: jclass is an invalid local reference: 0x5950001d (0xdead4321)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ul&gt;
-&lt;li&gt;现象&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;现象&lt;br&gt;android5.0以上，调用jni相关方法后，程序崩溃&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;原因及解决办法&lt;br&gt;通过findclass获得的local&lt;br&gt;reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下&lt;/p&gt;
+&lt;p&gt;  jclass myclass；&lt;br&gt;  jclass temp = env-&amp;gt;findclass(XXXX);&lt;br&gt;  myclass = (jclass)env-&amp;gt;NewGlobalRef(temp);&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;android5.0以上，调用jni相关方法后，程序崩溃&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;原因及解决办法&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;通过findclass获得的local&lt;br&gt;reference在5.0以上版本会被系统gc掉，导致后续使用的地方会无效。现在的解决方案是使用NewGlobalRef，如下&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;jclass myclass；
-jclass temp = env-&amp;gt;findclass(XXXX);
-myclass = (jclass)env-&amp;gt;NewGlobalRef(temp);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;记得要调用DeleteGlobalRef&lt;/p&gt;
+&lt;p&gt;记得要调用DeleteGlobalRef&lt;/p&gt;
 &lt;p&gt;另外以下几个链接也可以参考一下 &lt;a href=&quot;http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JNI Local Reference Changes in&lt;br&gt;ICS&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://blog.k-res.net/archives/1525.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;国内的翻译&lt;/a&gt;&lt;/p&gt;
 </content>
     
@@ -92,9 +87,11 @@ myclass = (jclass)env-&amp;gt;NewGlobalRef(temp);
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;原因及解决办法&lt;br&gt;原因：AS的Gradle插件默认会启用Manifest Merger Tool，若Library项目中也定义了与主项目相同的属性（例如默认生成的android:icon和android:theme），则此时会合并失&lt;br&gt;败，并报上面的错误&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”&lt;a href=&quot;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&quot;&gt;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;解决方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且记住在manifest根标签上加入xmlns:tools=”&lt;a href=&quot;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&quot;&gt;http://schemas.android.com/tools&amp;quot;，否则会找不到namespace哦）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;解决方法2：在build.gradle根标签上加上useOldManifestMerger true （懒人方法）&lt;/p&gt;
     
     </summary>
     
